@@ -42,9 +42,6 @@ This will install all the required dependencies listed in the `package.json` fil
 To run the server, you'll need to configure the environment variables. Create a `.env` file in the root directory with the following variables:
 
 ```bash
-# MongoDB URI (replace <username>, <password>, and <dbname> with actual values)
-MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/<dbname>?retryWrites=true&w=majority
-
 # RapidAPI credentials (for API calls)
 RAPIDAPI_KEY=your-rapidapi-key-here
 RAPIDAPI_HOST=apidojo-booking-v1.p.rapidapi.com
@@ -108,3 +105,7 @@ This project includes various API endpoints for fetching and managing travel-rel
 - **controller/trail.js**: Contains logic for handling the API requests.
 - **routes/api.js**: Defines the routes for API endpoints.
 - **views/**: EJS templates for rendering data (if using EJS in the project).
+
+
+
+INCOMPLETE YET
