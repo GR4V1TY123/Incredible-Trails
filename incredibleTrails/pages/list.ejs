@@ -1,0 +1,24 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container-fluid">
+    <% if(data) {%>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            <% for(let d of data.result) { %>
+
+            <div class="col">
+                <div class="card h-100" style="max-height: 600px;">
+                <img src="<%= d.main_photo_url %>" class="card-img-top img-fluid w-100 h-50" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><%= d.hotel_name %></h5>
+                    <p class="card-text"><%= d.review_score %></p>
+                    <a href="<%= d.url %>"><button class="btn btn-success">Proceed Booking</button></a>
+                </div>
+                </div>
+            </div>
+
+            <% } %>
+            
+        </div>
+    <% } %>
+</div>
