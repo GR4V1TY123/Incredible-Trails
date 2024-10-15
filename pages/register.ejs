@@ -1,1 +1,49 @@
 <% layout("layouts/boilerplate") %>
+
+
+<div class="row">
+    <h1 class="text-center mb-4">Register to Incredible Trails</h1>
+    <div class="col-6 offset-3">
+        <form action="/register" method="post" novalidate class="needs-validation">
+            <div class="mb-4">
+                <label class="form-label" for="username">Username </label>
+                <input class="form-control" type="text" placeholder="Enter username" id="username" name="username" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a username.
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <label class="form-label" for="email">Email </label>
+                <input class="form-control" type="email" placeholder="Enter email" id="email" name="email" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a valid email.
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label" for="pass">Password </label>
+                <input class="form-control" type="password" placeholder="Enter password" id="pass" name="password" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a password.
+                </div>
+            </div>
+            <div class="mb-4">
+                <button class="mt-4 btn btn-success">Register</button>
+            </div>
+        </form>
+        <footer>
+            <a href="/">Back</a>
+        </footer>
+    </div>
+</div>
+
