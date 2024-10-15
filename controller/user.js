@@ -34,3 +34,14 @@ module.exports.register = async(req,res)=>{
         res.redirect('/register')
     }
 }
+
+module.exports.logout = (req,res,next) =>{
+    req.logout(function(err){
+        if(err){
+            return next(err);
+        }
+    
+    req.flash('success', "Logged Out!")
+    res.redirect('/')
+    })
+}

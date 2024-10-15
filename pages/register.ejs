@@ -1,13 +1,62 @@
 <% layout("layouts/boilerplate") %>
+<style>
+    .loginImage{
+        position: relative;
+        background-color: white;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(119, 229, 2, 0.7)),
+        url("loginimg.png");
+    }
 
+    .inside-text{
+        display: flex;
+        position: absolute;
+        top: 13%;
+        right: 52%;
+        width: 20%;
+        height: 70%;
+        flex-wrap: wrap;
+        font-size: 100px;
+        font-weight: bolder;
+        color: rgb(255, 0, 98);
+        font-family: "Dela Gothic One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        text-shadow: 
+        -12px -12px 0 #000,  
+         12px -12px 0 #000,
+        -12px  12px 0 #000,
+         12px  12px 0 #000,
+        -12px  0px 0 #000,
+         12px  0px 0 #000,
+         0px  12px 0 #000,
+         0px -12px 0 #000;
+    }
 
+    .btn-success{
+        width: 100px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    @media screen and (min-width: 1400px) {
+        .loginmain{
+            background-color: rgb(227, 227, 227);
+        }
+    }
+    
+</style>
+
+<div class="container-fluid loginmain"  style="height: 100%;width: 100%;">
 <div class="row">
-    <h1 class="text-center mb-4">Register to Incredible Trails</h1>
+    <div class="col align-self-center">
+    <h1 class="text-center mb-5" style="font-size: 60px; font-weight: bolder;">Register to Incredible Trails</h1>
     <div class="col-6 offset-3">
-        <form action="/register" method="post" novalidate class="needs-validation">
+        <form action="/register" method="post" novalidate class="needs-validation mt-4">
             <div class="mb-4">
-                <label class="form-label" for="username">Username </label>
+                <label class="form-label" for="username"><h3>Username</h3> </label>
+                <div class="input-group input-group-lg">
                 <input class="form-control" type="text" placeholder="Enter username" id="username" name="username" required>
+                </div>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -17,8 +66,10 @@
             </div>
             
             <div class="mb-4">
-                <label class="form-label" for="email">Email </label>
+                <label class="form-label" for="email"><h3>Email</h3> </label>
+                <div class="input-group input-group-lg">
                 <input class="form-control" type="email" placeholder="Enter email" id="email" name="email" required>
+                </div>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -28,8 +79,10 @@
             </div>
 
             <div class="mb-4">
-                <label class="form-label" for="pass">Password </label>
+                <label class="form-label" for="pass"><h3>Password</h3> </label>
+                <div class="input-group input-group-lg">
                 <input class="form-control" type="password" placeholder="Enter password" id="pass" name="password" required>
+                </div>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -45,5 +98,13 @@
             <a href="/">Back</a>
         </footer>
     </div>
+    
+</div>
+<div class="col-xxl-5 d-sm-none d-xxl-block loginImage"  style="height: 92.5vh;">
+    <div class="inside-text">
+        Let the journey begin.
+    </div>
+</div>
 </div>
 
+</div>

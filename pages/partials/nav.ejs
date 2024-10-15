@@ -1,24 +1,52 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background: transparent;">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-none fs-5">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bolder fs-3" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-compass text-primary mb-1" viewBox="0 0 16 16">
+                <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+                <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+              </svg> Incredible<span class="text-primary">Trails</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-lg-flex justify-content-end collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link text-dark" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="/trails/properties/v2/list-by-map">Explore</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="/gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="/profile"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle text-primary" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                  </svg></a>
+                </li>
+                <% if(!currentUser) {%>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                    <% } else { %>                 
+                    <li class="nav-item"><a class="nav-link text-danger" href="/logout">Logout</a></li>
+                    <% } %>
+            </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>
+
+<style>
+    .nav-link{
+        font-weight: bold;
+    }
+
+    .nav-item{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+</style>

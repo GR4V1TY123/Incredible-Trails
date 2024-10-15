@@ -12,4 +12,7 @@ router.route('/register')
     .get(users.registerForm)
     .post(users.register)
 
+router.get('/logout', users.logout)
+
+
 module.exports = router

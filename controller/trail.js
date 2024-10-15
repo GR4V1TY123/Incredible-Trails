@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const axios = require('axios')
 
 module.exports.list = async (req, res) => {
-    // Destructure and set default values for query parameters
     const {
       room_qty = '1',
       guest_qty = '1',
@@ -13,11 +12,10 @@ module.exports.list = async (req, res) => {
       children_qty = '2',
       order_by = 'popularity',
       offset = '0',
-      arrival_date = '2024-10-04',   // Set default arrival date
-      departure_date = '2024-10-06'   // Set default departure date
+      arrival_date = '2024-10-18',   // Set default arrival date
+      departure_date = '2024-10-20'   // Set default departure date
     } = req.query;
   
-    // Configure the API request options
     const options = {
       method: 'GET',
       url: `https://${process.env.RAPIDAPI_HOST}/properties/list-by-map`,
@@ -32,7 +30,6 @@ module.exports.list = async (req, res) => {
         offset,
         arrival_date,
         departure_date
-        // Add more query parameters as needed
       },
       headers: {
         'X-Rapidapi-Key': process.env.RAPIDAPI_KEY,
@@ -41,9 +38,8 @@ module.exports.list = async (req, res) => {
     };
   
     try {
-      // Make the request to the API
       const response = await axios.request(options);
-      res.render('list', { data: response.data });  // Send the response data back to the client
+      res.render('list', { data: response.data });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Error fetching data from Booking API' });

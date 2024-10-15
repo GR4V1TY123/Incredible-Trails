@@ -8,7 +8,7 @@ const flash = require('connect-flash')
 
 const trails = require('../controller/trail')
 
-router.route('/properties/list-by-map')
+router.route('/properties/v2/list-by-map')
     .get(trails.list)
 
 
