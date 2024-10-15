@@ -5,11 +5,13 @@ const router = express.Router();
 const methodOverride = require('method-override');
 const mongoose = require("mongoose");
 const flash = require('connect-flash')
+const {isLoggedIn} = require('../middleware.js')
+
 
 const trails = require('../controller/trail')
 
-router.route('/properties/v2/list-by-map')
-    .get(trails.list)
+router.route('/list')
+    .get(isLoggedIn,trails.list)
 
 
 module.exports = router;

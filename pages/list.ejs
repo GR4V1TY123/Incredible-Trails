@@ -1,24 +1,105 @@
 <% layout("layouts/boilerplate") %>
 
+<style>
+    .form-label{
+        font-size: large;
+        font-weight: 700;
+    }
+</style>
+
 <div class="container-fluid">
-    <% if(data) {%>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div>
+        <h1 class="fw-bolder">Search for Hotels</h1>
+    <form action="/trails/list" method="get">
 
-            <% for(let d of data.result) { %>
-
+        <div class="row mt-2 d-flex align-items-center">
             <div class="col">
-                <div class="card h-100" style="max-height: 600px;">
-                <img src="<%= d.main_photo_url %>" class="card-img-top img-fluid w-100 h-50" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><%= d.hotel_name %></h5>
-                    <p class="card-text"><%= d.review_score %></p>
-                    <a href="<%= d.url %>"><button class="btn btn-success">Proceed Booking</button></a>
-                </div>
-                </div>
+                <label class="form-label" for="query">Destination</label>
+                <input class="form-control" type="text" id="query" name="query" placeholder="Enter city or destination" required style="width: 400px;">
             </div>
+          </div>
+        
+        
 
+        <div class="row mt-2">
+            <div class="col">
+                <label class="form-label" for="checkin">Check-in Date</label>
+                <input class="form-control" type="date" id="checkin" name="checkin" required>
+            </div>
+            <div class="col">
+                <label class="form-label" for="checkout">Check-out Date</label>
+                <input class="form-control" type="date" id="checkout" name="checkout" required>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col">
+                <label class="form-label" for="room_qty">Number of Rooms</label>
+                <input class="form-control" type="number" id="room_qty" name="room_qty" value="1" min="1" required>
+            </div>
+            <div class="col">
+                <label class="form-label" for="guest_qty">Number of Guests</label>
+                <input class="form-control" type="number" id="guest_qty" name="guest_qty" value="1" min="1" required>
+            </div>
+            <div class="col">
+                <label class="form-label" for="currency">Currency</label>
+                <select class="form-select" id="currency" name="price_filter_currencycode">
+                    <option value="USD" selected>USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="INR">INR</option>
+                    <option value="GBP">GBP</option>
+                    <!-- Add more currencies as needed -->
+                </select>
+            </div>
+          </div>
+        
+
+        
+
+        
+
+        
+
+        <button class="btn btn-primary my-4" type="submit">Search Hotels</button>
+    </form>
+    <hr>
+    </div>
+    <% if(currentUser) {%>
+        <section class="mt-3">
+            <div class="alert alert-primary fw-bolder" role="alert">
+                Prices from 
+                <% for(let d of data.data.partners) {%>
+                    <%= d %>, 
+                <% } %>
+              </div>
+            <% if(data) {%>
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+        
+                    <% for(let d of data.data.hotels) { %>
+        
+                    <div class="col">
+                        <div class="card h-100" style="max-height: 700px;">
+                        <img src="<%= d.heroImage %>" class="card-img-top img-fluid w-100 h-50" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><h3><%= d.name %></h3></h5>
+                            <p class="card-text fs-4"><%= d.priceDescription %></p>
+                            <p class="card-text fs-4"><%= d.relevantPoiDistance %></p>
+                            <p class="card-text fs-4">Rating: <span class="text-success"><%= d.stars ? d.stars : "Not available" %></span></p>
+                            <p class="card-text text-secondary"><%= d.taxPolicy %></p>
+                            <p class="card-text"><%= d.pricesFrom %></p>
+                            <a href="https://<%= d.cheapestOfferPartnerName%>"><button class="btn btn-success">Cheapest on <%= d.cheapestOfferPartnerName %></button></a>
+                        </div>
+                        </div>
+                    </div>
+        
+                    <% } %>
+                    
+                </div>
             <% } %>
-            
-        </div>
-    <% } %>
+        </section>
+    <% } else { %>
+        <h1>Please Login to see hotels</h1>
+        <a href="/login">login</a>
+        <a href="/register">register</a>
+        <% } %>
 </div>
