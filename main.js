@@ -80,6 +80,13 @@ app.get('/contact', (req,res)=>{
     res.render('contact')
 })
 
+app.get('/gallery', (req,res)=>{
+    res.render('gallery')
+})
+app.get('/aboutus', (req,res)=>{
+    res.render('aboutus')
+})
+
 app.listen('3000', ()=>{
     console.log("Server Running...........");
 })

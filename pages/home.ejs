@@ -1,4 +1,118 @@
 <% layout("layouts/boilerplate") %>
 
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-<h1>Welcome to incredible trails</h1>
+
+.Hello{
+    position: relative;
+    height: 95vh;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.title{
+    margin: 35px 0px 0px 80px;
+}
+
+.title .one{
+    padding: 4px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 22px;
+
+}
+.title .two{
+    font-size: 22px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: blue;
+}
+.container{
+    margin-top: 60px;
+}
+.main{
+    margin: 0px 80px;
+}
+.head{
+    padding: 60px 0px 5px 95px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 850;
+    max-width: 30vw;
+    font-size: 70px;
+}
+.content{
+    font-family: "Montserrat", sans-serif;
+    max-width: 40vw;
+    font-size: 26px;
+    padding: 0px 0px 5px 102px;
+}
+
+.button{
+    padding: 50px 0px 0px 100px;
+}
+.button button{
+    background-color: black;
+    font-size: 15px;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    width: 220px;
+    height: 41px;
+    border: none;
+    border-radius: 7px;
+}
+.button button:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.795);
+}
+.box{
+    background: rgb(177, 0, 0);
+    width: 400px;
+    height: 570px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 15px;
+}
+
+.boximage{
+    background-color: rgb(244, 147, 30);
+    position: absolute;
+    bottom: 110px;
+    right: 107px;
+    z-index: 2;
+    width: 604px;
+    height: 604px;
+    border-radius: 302px;
+    border: 15px solid rgb(244, 147, 30);
+}
+.image img{
+    position: absolute;
+    z-index: 3;
+    bottom: 136px;
+    right: 129px;
+    width: 584px;
+    height: 584px;
+    border-radius: 292px;
+    object-fit: cover;
+}
+    </style>
+
+    <div class="Hello"> 
+    <div class="container" style="padding-left: 0px; margin-left: 0px;">
+        <div class="main" style="padding-left: 0px;">
+        <div class="head">INCREDIBLE TRAILS</div>
+        <div class="content">A platform for planning trips, booking accommodations, and discovering attractions.</div>
+        <div class="button"><button>BEGIN YOUR JOURNEY</button></div>
+    </div>
+        <div class="boximage"></div>
+        <div class="image"><img src="https://img.freepik.com/premium-photo/airplane-globe_134398-446.jpg?w=996" alt=""></div>
+        <div class="box"></div>
+    </div>
+    </div>
+    
