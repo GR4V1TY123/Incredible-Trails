@@ -1,0 +1,307 @@
+<% layout("layouts/boilerplate") %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5e5d3;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card {
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background-color: #fff8e7;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #8b4513;
+        }
+        .card-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #5a3d2b;
+        }
+        .btn-primary {
+            background-color: #8b4513;
+            border-color: #8b4513;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #a0522d;
+            border-color: #a0522d;
+            transform: scale(1.05);
+        }
+        .modal-content {
+            border-radius: 15px;
+            background-color: #fff8e7;
+        }
+        .bg-info {
+            background-color: #ffe4b5 !important;
+        }
+        .form-control {
+            background-color: #fff;
+            border: 2px solid #d2b48c;
+            border-radius: 10px;
+            padding: 0.75rem;
+            font-size: 1.1rem;
+        }
+        .form-control:focus {
+            border-color: #8b4513;
+            box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+        }
+        .form-label {
+            font-weight: bold;
+            color: #5a3d2b;
+        }
+    </style>
+
+
+    <div class="container my-5">
+        <h1 class="text-center mb-5 text-4xl font-bold text-brown-800">Join Exciting Trips!</h1>
+        <div class="mb-4">
+            <label for="destinationFilter" class="form-label">Filter by Destination:</label>
+            <select id="destinationFilter" class="form-select">
+                <option value="">All Destinations</option>
+                <option value="Bali">Bali</option>
+                <option value="Swiss Alps">Swiss Alps</option>
+                <option value="Europe">Europe</option>
+                <option value="Africa">Africa</option>
+                <option value="Caribbean">Caribbean</option>
+                <option value="Japan">Japan</option>
+                <option value="Australia">Australia</option>
+                <option value="Canada">Canada</option>
+                <option value="New Zealand">New Zealand</option>
+                <option value="Iceland">Iceland</option>
+            </select>
+        </div>
+        <div id="tripCards" class="row g-4">
+            <!-- Trip cards will be dynamically added here -->
+        </div>
+        <div class="text-center mt-5">
+            <button class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#listTripModal">List Your Own Trip</button>
+        </div>
+    </div>
+
+    <!-- Modal for listing a trip -->
+    <div class="modal fade" id="listTripModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title">List Your Trip</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="tripForm">
+                        <div class="mb-3">
+                            <label for="tripTitle" class="form-label">Trip Title</label>
+                            <input type="text" class="form-control" id="tripTitle" required placeholder="Enter trip title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tripStartDate" class="form-label">Start Date</label>
+                            <input type="date" class="form-control" id="tripStartDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tripEndDate" class="form-label">End Date</label>
+                            <input type="date" class="form-control" id="tripEndDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tripPlaces" class="form-label">Places</label>
+                            <input type="text" class="form-control" id="tripPlaces" required placeholder="Enter destinations">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tripMode" class="form-label">Travel Mode</label>
+                            <input type="text" class="form-control" id="tripMode" required placeholder="Enter travel mode">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tripSize" class="form-label">Group Size</label>
+                            <input type="number" class="form-control" id="tripSize" required placeholder="Enter group size">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tripImage" class="form-label">Trip Image</label>
+                            <input type="file" class="form-control" id="tripImage" accept="image/*" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitTrip">Submit Trip</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const tripData = [
+            {
+                title: "Tropical Paradise Getaway",
+                dates: "June 15-22, 2023",
+                places: "Bali, Indonesia",
+                travelMode: "Flight + Ferry",
+                groupSize: 12,
+                image: "https://source.unsplash.com/random/800x600?bali"
+            },
+            {
+                title: "Alpine Adventure",
+                dates: "July 5-12, 2023",
+                places: "Swiss Alps",
+                travelMode: "Train + Cable Car",
+                groupSize: 8,
+                image: "https://source.unsplash.com/random/800x600?swiss-alps"
+            },
+            {
+                title: "European City Hopper",
+                dates: "August 1-15, 2023",
+                places: "Paris, Rome, Barcelona",
+                travelMode: "Train",
+                groupSize: 15,
+                image: "https://source.unsplash.com/random/800x600?europe"
+            },
+            {
+                title: "African Safari Expedition",
+                dates: "September 10-20, 2023",
+                places: "Kenya & Tanzania",
+                travelMode: "Jeep + Small Aircraft",
+                groupSize: 10,
+                image: "https://source.unsplash.com/random/800x600?safari"
+            },
+            {
+                title: "Caribbean Cruise Adventure",
+                dates: "October 5-15, 2023",
+                places: "Various Caribbean Islands",
+                travelMode: "Cruise Ship",
+                groupSize: 20,
+                image: "https://source.unsplash.com/random/800x600?caribbean"
+            },
+            {
+                title: "Japan Cultural Immersion",
+                dates: "November 1-12, 2023",
+                places: "Tokyo, Kyoto, Osaka",
+                travelMode: "Bullet Train",
+                groupSize: 12,
+                image: "https://source.unsplash.com/random/800x600?japan"
+            },
+            {
+                title: "Australian Outback Explorer",
+                dates: "December 1-10, 2023",
+                places: "Uluru, Alice Springs",
+                travelMode: "4x4 Vehicle",
+                groupSize: 8,
+                image: "https://source.unsplash.com/random/800x600?australia"
+            },
+            {
+                title: "Canadian Rockies Adventure",
+                dates: "January 5-15, 2024",
+                places: "Banff, Jasper, Lake Louise",
+                travelMode: "Bus + Snowmobile",
+                groupSize: 15,
+                image: "https://source.unsplash.com/random/800x600?canada"
+            },
+            {
+                title: "New Zealand Nature Tour",
+                dates: "February 10-22, 2024",
+                places: "Auckland, Queenstown, Milford Sound",
+                travelMode: "Van + Boat",
+                groupSize: 10,
+                image: "https://source.unsplash.com/random/800x600?new-zealand"
+            },
+            {
+                title: "Iceland Northern Lights Expedition",
+                dates: "March 1-10, 2024",
+                places: "Reykjavik, Golden Circle, Blue Lagoon",
+                travelMode: "Bus + Snowcat",
+                groupSize: 12,
+                image: "https://source.unsplash.com/random/800x600?iceland"
+            }
+        ];
+
+        function createTripCard(trip) {
+            const card = document.createElement('div');
+            card.className = 'col-md-6 col-lg-4 mb-4';
+            card.innerHTML = `
+                <div class="card h-100">
+                    <img src="${trip.image}" class="card-img-top" alt="${trip.title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${trip.title}</h5>
+                        <p class="card-text">
+                            <strong>Dates:</strong> ${trip.dates}<br>
+                            <strong>Places:</strong> ${trip.places}<br>
+                            <strong>Travel Mode:</strong> ${trip.travelMode}<br>
+                            <strong>Group Size:</strong> ${trip.groupSize} people
+                        </p>
+                        <a href="#" class="btn btn-primary">Enquire Now</a>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function displayTrips(trips) {
+            const tripCards = document.getElementById('tripCards');
+            tripCards.innerHTML = '';
+            trips.forEach(trip => {
+                tripCards.appendChild(createTripCard(trip));
+            });
+        }
+
+        function filterTrips() {
+            const destination = document.getElementById('destinationFilter').value.toLowerCase();
+            const filteredTrips = tripData.filter(trip => 
+                destination === '' || trip.places.toLowerCase().includes(destination)
+            );
+            displayTrips(filteredTrips);
+        }
+
+        document.getElementById('destinationFilter').addEventListener('change', filterTrips);
+
+        document.getElementById('submitTrip').addEventListener('click', function() {
+            const form = document.getElementById('tripForm');
+            if (form.checkValidity()) {
+                const startDate = new Date(document.getElementById('tripStartDate').value);
+                const endDate = new Date(document.getElementById('tripEndDate').value);
+                const imageFile = document.getElementById('tripImage').files[0];
+
+                if (imageFile) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const newTrip = {
+                            title: document.getElementById('tripTitle').value,
+                            dates: `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`,
+                            places: document.getElementById('tripPlaces').value,
+                            travelMode: document.getElementById('tripMode').value,
+                            groupSize: document.getElementById('tripSize').value,
+                            image: e.target.result
+                        };
+                        tripData.push(newTrip);
+                        displayTrips(tripData);
+                        bootstrap.Modal.getInstance(document.getElementById('listTripModal')).hide();
+                        form.reset();
+                    };
+                    reader.readAsDataURL(imageFile);
+                }
+            } else {
+                form.reportValidity();
+            }
+        });
+
+        // Initial display of trips
+        displayTrips(tripData);
+    </script>

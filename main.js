@@ -87,6 +87,10 @@ app.get('/aboutus', (req,res)=>{
     res.render('aboutus')
 })
 
+app.get('/trips', (req,res)=>{
+    res.render('trips')
+})
+
 app.listen('3000', ()=>{
     console.log("Server Running...........");
 })
