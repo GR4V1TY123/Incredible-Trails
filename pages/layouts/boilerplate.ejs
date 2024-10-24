@@ -18,6 +18,19 @@
 background: linear-gradient(163deg, rgba(240,255,178,1) 0%, rgba(255,190,122,1) 20%, rgba(255,187,54,1) 100%);">
     <%- include("../partials/nav") %>
 
+    <script>
+        window.embeddedChatbotConfig = {
+        chatbotId: "sln7AECwnAbx_Xxs6Lec5",
+        domain: "www.chatbase.co"
+        }
+        </script>
+        <script
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="sln7AECwnAbx_Xxs6Lec5"
+        domain="www.chatbase.co"
+        defer>
+        </script>
+
     <% if(success.length || error.length) {%>
     <main class="container mt-5">
         <%- include("../partials/flash") %>
@@ -25,8 +38,10 @@ background: linear-gradient(163deg, rgba(240,255,178,1) 0%, rgba(255,190,122,1) 
     <% } %>
     
     <%- body %>
+    
 
     <%- include("../partials/footer") %>
+    
 
     <script src="/javascripts/validateForm.js"></script>
     

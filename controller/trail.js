@@ -9,8 +9,8 @@ module.exports.list = async (req, res) => {
         guest_qty = '1',
         price_filter_currencycode = 'USD',
         query = 'mumbai',  // Default query for the destination search
-        checkin = '2024-10-20',  // Default check-in date
-        checkout = '2024-10-22'  // Default check-out date
+        checkin = '2024-10-28',  // Default check-in date
+        checkout = '2024-10-30'  // Default check-out date
     } = req.query;
 
     try {
@@ -60,6 +60,8 @@ module.exports.list = async (req, res) => {
 
         // Make the request to the hotel search API
         const hotelsResponse = await axios.request(hotelsOptions);
+        console.log(hotelsResponse.data);
+
 
         // Send the response data to the client
         res.render('list', { data: hotelsResponse.data });
